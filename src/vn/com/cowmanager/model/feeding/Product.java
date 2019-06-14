@@ -41,13 +41,13 @@ public abstract class Product {
 			this.mfg = mfg;
 		} else {
 			throw new NotPossibleException(null,
-					"Fomat: dd/MM/yyyy");
+					"Ä�á»‹nh dáº¡ng ngÃ y khÃ´ng há»£p lá»‡, ngÃ y Ä‘Æ°á»£c Ä‘á»‹nh dáº¡ng Ä‘Ãºng theo: dd/MM/yyyy");
 		}
 		if (validateDate(exp)) {
 			this.exp = exp;
 		} else {
 			throw new NotPossibleException(null,
-					"Fomat: dd/MM/yyyy");
+					"Ä�á»‹nh dáº¡ng ngÃ y khÃ´ng há»£p lá»‡, ngÃ y Ä‘Æ°á»£c Ä‘á»‹nh dáº¡ng Ä‘Ãºng theo: dd/MM/yyyy");
 		}
 	}
 

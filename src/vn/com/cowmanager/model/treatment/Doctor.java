@@ -6,9 +6,10 @@ import domainapp.basics.model.meta.DClass;
 import domainapp.basics.model.meta.DAttr.Type;
 import domainapp.basics.model.meta.DOpt;
 import domainapp.basics.util.Tuple;
+import vn.com.cowmanager.model.arrangement.Person;
 
 @DClass(schema = "treatment")
-public class Doctor {
+public class Doctor extends Person {
 
 	private static int idCounter = 0;
 
@@ -16,7 +17,7 @@ public class Doctor {
 	private String hospital;
 
 	public Doctor(String id, String name, String address, String phoneNum, String hospital) {
-
+		super(id, name, address, phoneNum);
 		this.hospital = hospital;
 	}
 

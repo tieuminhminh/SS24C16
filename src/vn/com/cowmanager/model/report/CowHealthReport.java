@@ -92,7 +92,7 @@ public class CowHealthReport {
 	}
 
 	@DOpt(type = DOpt.Type.LinkAdder)
-	public boolean addcows(Collection<Cow> cows) {
+	public boolean addCows(Collection<Cow> cows) {
 		// do nothing
 		return false;
 	}
@@ -101,11 +101,11 @@ public class CowHealthReport {
 		return id;
 	}
 
-	public String getcowStatus() {
+	public String getCowStatus() {
 		return cowStatus;
 	}
 
-	public void setcowStatus(String cowStatus) throws NotPossibleException, DataSourceException {
+	public void setCowStatus(String cowStatus) throws NotPossibleException, DataSourceException {
 		boolean doQueryReport = (cowStatus != null && !cowStatus.equals(this.cowStatus));
 
 		this.cowStatus = cowStatus;
@@ -123,11 +123,11 @@ public class CowHealthReport {
 		return numberOfResult;
 	}
 
-	public Collection<Cow> getcows() {
+	public Collection<Cow> getCows() {
 		return cows;
 	}
 
-	public void setcows(Collection<Cow> cows) {
+	public void setCows(Collection<Cow> cows) {
 		this.cows = cows;
 	}
 

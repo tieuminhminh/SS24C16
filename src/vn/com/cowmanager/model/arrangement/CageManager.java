@@ -16,6 +16,8 @@ import domainapp.basics.model.meta.DClass;
 import domainapp.basics.model.meta.DOpt;
 import domainapp.basics.model.meta.DAttr.Type;
 import domainapp.basics.util.Tuple;
+import vn.com.cowmanager.model.report.CageStatusReport;
+import vn.com.cowmanager.model.report.TradingSurveyReport;
 
 @DClass(schema = "arrangement")
 public class CageManager {
@@ -61,6 +63,13 @@ public class CageManager {
 
 	@DAttr(name = A_outStandard, type = Type.String, mutable = false, length = 25)
 	private String outStandard;
+
+	// v5.0: to realise link to report
+	@DAttr(name = A_cageStatusReport, type = Type.Domain, serialisable = false, virtual = true)
+	private CageStatusReport cageStatusReport;
+
+	@DAttr(name = A_tradingServeyReport, type = Type.Domain, serialisable = false, virtual = true)
+	private TradingSurveyReport tradingServeyReport;
 
 	public CageManager(String id, Cage cage, Integer numberOfCow, Double weightAvg, String spaceCondition,
 			String enviCondition, String date, Integer dayLeft, String outStandard) {
@@ -264,6 +273,13 @@ public class CageManager {
 		return weightAvg;
 	}
 
+	public CageStatusReport getCageStatusReport() {
+		return cageStatusReport;
+	}
+
+	public TradingSurveyReport getTradingServeyReport() {
+		return tradingServeyReport;
+	}
 
 	public String getOutStandard() {
 		return outStandard;

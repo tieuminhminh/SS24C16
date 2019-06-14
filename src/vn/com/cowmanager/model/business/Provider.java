@@ -24,17 +24,17 @@ public class Provider extends Person {
 	@DAttr(name = "manufacturer", type = Type.String, length = 25)
 	private String manufacturer;
 
-	@DAttr(name = "lstSheep", type = Type.Collection, filter = @Select(clazz = Cow.class), optional = false, serialisable = false)
-	@DAssoc(ascName = "provider-has-sheep", ascType = AssocType.One2Many, endType = AssocEndType.One, role = "provider", associate = @Associate(cardMax = 25, cardMin = 1, type = Cow.class))
-	private List<Cow> lstSheep;
-	private static int sheepCount;
+	@DAttr(name = "lstCow", type = Type.Collection, filter = @Select(clazz = Cow.class), optional = false, serialisable = false)
+	@DAssoc(ascName = "provider-has-cow", ascType = AssocType.One2Many, endType = AssocEndType.One, role = "provider", associate = @Associate(cardMax = 25, cardMin = 1, type = Cow.class))
+	private List<Cow> lstCow;
+	private static int cowCount;
 
 	public Provider(String id, String name, String address, String phoneNum, String manufacturer) {
 		super(id, name, address, phoneNum);
 		this.manufacturer = manufacturer;
 
-		lstSheep = new ArrayList<>();
-		sheepCount = 0;
+		lstCow = new ArrayList<>();
+		cowCount = 0;
 	}
 
 	public Provider(String name, String address, String phoneNum, String manufacturer) {
@@ -48,9 +48,9 @@ public class Provider extends Person {
 	@DOpt(type = DOpt.Type.LinkAdder)
 	// only need to do this for reflexive association:
 	// @MemberRef(name="students")
-	public boolean addSheep(Cow s) {
-		if (!this.lstSheep.contains(s)) {
-			lstSheep.add(s);
+	public boolean addCow(Cow s) {
+		if (!this.lstCow.contains(s)) {
+			lstCow.add(s);
 		}
 
 		// no other attributes changed
@@ -58,19 +58,19 @@ public class Provider extends Person {
 	}
 
 	@DOpt(type = DOpt.Type.LinkAdderNew)
-	public boolean addNewSheep(Cow s) {
-		lstSheep.add(s);
-		sheepCount++;
+	public boolean addNewCow(Cow s) {
+		lstCow.add(s);
+		cowCount++;
 
 		// no other attributes changed
 		return false;
 	}
 
 	@DOpt(type = DOpt.Type.LinkAdder)
-	public boolean addSheep(List<Cow> lstSheep) {
-		for (Cow s : lstSheep) {
-			if (!this.lstSheep.contains(s)) {
-				this.lstSheep.add(s);
+	public boolean addCow(List<Cow> lstCow) {
+		for (Cow s : lstCow) {
+			if (!this.lstCow.contains(s)) {
+				this.lstCow.add(s);
 			}
 		}
 
@@ -79,9 +79,9 @@ public class Provider extends Person {
 	}
 
 	@DOpt(type = DOpt.Type.LinkAdderNew)
-	public boolean addNewSheep(List<Cow> lstSheep) {
-		this.lstSheep.addAll(lstSheep);
-		sheepCount += lstSheep.size();
+	public boolean addNewCow(List<Cow> lstCow) {
+		this.lstCow.addAll(lstCow);
+		cowCount += lstCow.size();
 
 		// no other attributes changed
 		return false;
@@ -90,32 +90,32 @@ public class Provider extends Person {
 	@DOpt(type = DOpt.Type.LinkRemover)
 	// only need to do this for reflexive association:
 	// @MemberRef(name="students")
-	public boolean removeSheep(Cow s) {
-		boolean removed = lstSheep.remove(s);
+	public boolean removeCow(Cow s) {
+		boolean removed = lstCow.remove(s);
 
 		if (removed) {
-			sheepCount--;
+			cowCount--;
 		}
 
 		// no other attributes changed
 		return false;
 	}
 
-	public List<Cow> getLstSheep() {
-		return lstSheep;
+	public List<Cow> getLstCow() {
+		return lstCow;
 	}
 
-	public void setLstSheep(List<Cow> lstSheep) {
-		this.lstSheep = lstSheep;
-		sheepCount = lstSheep.size();
+	public void setLstCow(List<Cow> lstCow) {
+		this.lstCow = lstCow;
+		cowCount = lstCow.size();
 	}
 
-	public static int getSheepCount() {
-		return sheepCount;
+	public static int getCowCount() {
+		return cowCount;
 	}
 
-	public static void setSheepCount(int sheepCount) {
-		Provider.sheepCount = sheepCount;
+	public static void setCowCount(int cowCount) {
+		Provider.cowCount = cowCount;
 	}
 
 	// automatically generate the next student id

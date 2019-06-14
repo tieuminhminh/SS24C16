@@ -21,6 +21,7 @@ public class FeedingManager {
 
 	@DAttr(name = "id", type = Type.String, id = true, auto = true, optional = false, mutable = false, length = 10)
 	private String id;
+
 	@DAttr(name = "storage", type = Type.Domain, optional = false, length = 6)
 	@DAssoc(ascName = "feedingManager-has-storage", ascType = AssocType.One2Many, endType = AssocEndType.Many, role = "FeedingManager", associate = @Associate(cardMax = 25, cardMin = 1, type = Storage.class))
 	private Storage storage;
@@ -40,7 +41,6 @@ public class FeedingManager {
 
 	@DAttr(name = "phase", type = Type.Integer, mutable = false, length = 6)
 	private Integer phase;
-
 	public FeedingManager(String id, Storage storage, Integer totalQuantityInStorage, Integer quantityForFeeding,
 			Cage cage, String eatingTime, Integer phase) {
 		this.id = nextId(id);

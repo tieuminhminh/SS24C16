@@ -3,11 +3,11 @@ package vn.com.cowmanager.model.treatment;
 import domainapp.basics.exceptions.ConstraintViolationException;
 import domainapp.basics.model.meta.DAttr;
 import domainapp.basics.model.meta.DAttr.Type;
-//import vn.com.cowmanager.model.feeding.Product;
 import domainapp.basics.model.meta.DClass;
+import vn.com.cowmanager.model.feeding.Product;
 
 @DClass(schema = "treatment")
-public class Drug {
+public class Drug extends Product {
 	private static int idCounter = 0;
 
 	@DAttr(name = "preservationRule", type = Type.String, length = 50, optional = false)
@@ -15,6 +15,7 @@ public class Drug {
 
 	public Drug(String id, String name, String productType, Double cost, String mfg, String exp,
 			String preservationRule) {
+		super(id, name, productType, cost, mfg, exp);
 		this.preservationRule = preservationRule;
 	}
 
@@ -22,8 +23,8 @@ public class Drug {
 		this(null, name, productType, cost, mfg, exp, preservationRule);
 	}
 
-	
-	/*protected String nextId(String id) throws ConstraintViolationException {
+	@Override
+	protected String nextId(String id) throws ConstraintViolationException {
 		if (id == null) {
 			idCounter++;
 			return "D" + idCounter;
@@ -48,6 +49,6 @@ public class Drug {
 
 	public void setPreservationRule(String preservationRule) {
 		this.preservationRule = preservationRule;
-	} */
+	}
 
 }
